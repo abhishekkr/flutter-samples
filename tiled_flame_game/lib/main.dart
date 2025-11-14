@@ -3,16 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:tiled_flame_game/src/my_game.dart';
 
 void main() {
-  final gameWidget = GameWidget(
-    game: MyGame(),
-    );
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Focus(
         onKeyEvent: (node, event) => KeyEventResult.handled,
-        child: gameWidget,
-        ),
+        child: MyGameWidget(),
       ),
+    ),
   );
+}
+
+class MyGameWidget extends StatefulWidget {
+  const MyGameWidget({super.key});
+
+  @override
+  State<MyGameWidget> createState() => _MyGameWidgetState();
+}
+
+class _MyGameWidgetState extends State<MyGameWidget> {
+  final MyGame myGame = MyGame();
+
+  @override
+  Widget build(BuildContext context) {
+    return GameWidget(game: myGame);
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    myGame.reload();
+  }
 }

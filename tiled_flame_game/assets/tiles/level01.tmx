@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="4">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="18">
  <tileset firstgid="1" source="kenny-tiny-dungeon.tsx"/>
  <layer id="1" name="Dungeon" width="32" height="20">
   <data encoding="csv">
@@ -75,5 +75,49 @@
  </layer>
  <objectgroup id="6" name="Spawnpoints">
   <object id="3" name="Player" type="Player" x="152" y="152" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="7" name="CollisionBlocks" class="CollisionBlocks">
+  <object id="4" name="CollisionBlock" type="CollisionBlocks" x="34" y="1">
+   <polygon points="0,0 -1,44 48,45 48,67 1,67 -1,141 29,141 29,110 96,110 96,126 143,126 144,120 155,120 157,125 174,125 174,157 235,157 236,60 254,60 254,108 273,108 279,113 287,108 318,109 319,158 348,157 349,61 369,61 373,65 380,61 432,62 439,65 446,61 461,61 462,158 477,158 478,-2 166,-1 166,30 174,30 175,46 189,46 189,31 206,31 205,49 192,49 192,61 206,61 206,80 172,79 173,68 159,68 160,78 125,78 125,28 164,28 164,-1"/>
+  </object>
+  <object id="5" name="CollisionBlock" type="CollisionBlocks" x="512" y="183">
+   <polygon points="0,0 -142,0 -144,91 -157,91 -157,100 -144,101 -143,104 -95,103 -94,118 -81,118 -81,106 -65,105 -65,56 -44,56 -42,49 -24,49 -19,56 -15,56 -15,71 -1,71"/>
+  </object>
+  <object id="6" name="CollisionBlock" type="CollisionBlocks" x="333" y="201">
+   <polygon points="0,0 -121,1 -121,13 -187,13 -187,53 -158,54 -157,70 -94,69 -94,38 -77,38 -75,50 -64,50 -62,39 -29,39 -26,47 -16,47 -14,39 2,39"/>
+  </object>
+  <object id="7" name="CollisionBlock" type="CollisionBlocks" x="94" y="183">
+   <polygon points="0,0 -44,0 -44,32 -64,31 -63,10 -79,9 -78,30 -94,30 -94,136 -63,136 -62,87 -17,87 -15,71 0,72"/>
+  </object>
+  <object id="8" name="CollisionBlock" type="CollisionBlocks" x="15" y="1">
+   <polygon points="0,0 -1,142 -15,143 -14,-1"/>
+  </object>
+  <object id="9" name="CollisionBlock" type="CollisionBlocks" x="113" y="210">
+   <polygon points="0,0 1,90 94,92 95,109 111,109 107,80 47,78 46,62 32,62 31,77 16,77 15,-1"/>
+  </object>
+  <object id="10" name="CollisionBlock" type="CollisionBlocks" x="337" y="211">
+   <polygon points="0,0 30,0 29,12 0,13"/>
+  </object>
+  <object id="11" name="CollisionBlock" type="CollisionBlocks" x="466" y="258">
+   <polygon points="0,0 13,0 14,13 -1,13"/>
+  </object>
+  <object id="12" name="CollisionBlock" type="CollisionBlocks" x="322" y="129">
+   <polygon points="0,0 13,0 13,13 1,13"/>
+  </object>
+  <object id="13" name="CollisionBlock" type="CollisionBlocks" x="340" y="150">
+   <polygon points="0,0 8,0 8,8 1,6"/>
+  </object>
+  <object id="14" name="CollisionBlock" type="CollisionBlocks" x="293" y="135">
+   <polygon points="0,0 6,-1 7,5 1,6"/>
+  </object>
+  <object id="15" name="CollisionBlock" type="CollisionBlocks" x="403" y="96">
+   <polygon points="0,0 11,0 11,14 -2,14"/>
+  </object>
+  <object id="16" name="CollisionBlock" type="CollisionBlocks" x="433" y="96">
+   <polygon points="0,0 13,0 13,12 2,12"/>
+  </object>
+  <object id="17" name="CollisionBlock" type="CollisionBlocks" x="466" y="96">
+   <polygon points="0,0 12,0 12,13 -2,13"/>
+  </object>
  </objectgroup>
 </map>

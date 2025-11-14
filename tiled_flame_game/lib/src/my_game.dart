@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:flame/sprite.dart';
 import 'package:flame/events.dart';
 
 import 'package:tiled_flame_game/src/level.dart';
 import 'package:tiled_flame_game/src/playerold.dart';
-
 
 class MyGame extends FlameGame with HasKeyboardHandlerComponents {
   MyGame();
@@ -30,6 +28,11 @@ class MyGame extends FlameGame with HasKeyboardHandlerComponents {
     return super.onLoad();
   }
 
+  void reload() {
+    removeAll(children);
+    onLoad();
+  }
+
   void _loadLevel(String levelName) {
     level = Level(levelName: levelName, player: player);
 
@@ -42,10 +45,7 @@ class MyGame extends FlameGame with HasKeyboardHandlerComponents {
 
     cam = CameraComponent(
       world: level,
-      viewport: FixedSizeViewport(
-        windowWidth,
-        windowHeight,
-      ),
+      viewport: FixedSizeViewport(windowWidth, windowHeight),
     );
 
     cam.viewfinder.anchor = Anchor.center;

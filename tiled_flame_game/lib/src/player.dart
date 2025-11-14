@@ -2,20 +2,13 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
-//import 'package:flame/game.dart';
-import 'package:flutter/material.dart';
 
 import 'package:tiled_flame_game/src/my_game.dart';
 
-enum PlayerState {
-  walkUp,
-  walkDown,
-  walkRight,
-  walkLeft,
-  ;
-}
+enum PlayerState { walkUp, walkDown, walkRight, walkLeft }
 
-class Player extends SpriteAnimationGroupComponent with HasGameRef<MyGame> {
+class Player extends SpriteAnimationGroupComponent
+    with HasGameReference<MyGame> {
   static const double speed = 100; // pixels per second
   static const String spriteFile = "spritesheet-16bit-player.png";
 
@@ -59,21 +52,16 @@ class Player extends SpriteAnimationGroupComponent with HasGameRef<MyGame> {
 
   SpriteSheet _loadSpritesheet(String filepath) {
     var spriteImages = game.images.fromCache(filepath);
-    return SpriteSheet(
-      image: spriteImages,
-      srcSize: Vector2.all(64),
-      );
+    return SpriteSheet(image: spriteImages, srcSize: Vector2.all(64));
   }
 
   SpriteAnimation _spriteAnimation(SpriteSheet spriteSheet, int row) {
     var loop = true;
     return SpriteAnimation.spriteList(
-      List.generate(
-        4,
-        (index) => spriteSheet.getSprite(index, row),
-      ),
+      List.generate(4, (index) => spriteSheet.getSprite(index, row)),
       stepTime: 0.15,
-      loop: loop);
+      loop: loop,
+    );
   }
 
   void move(String direction) {
