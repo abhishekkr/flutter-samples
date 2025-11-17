@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flame/flame.dart';
 
 import 'package:craig_boboo/boboo/myapp.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Flame.device.fullScreen();
+  Flame.device.setLandscape();
   runApp(const MyScreen());
 }
 
