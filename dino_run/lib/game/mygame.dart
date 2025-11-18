@@ -16,8 +16,9 @@ class DinoRun extends FlameGame {
   @override
   FutureOr<void> onLoad() async {
     add(levelbg);
-    add(dino);
     add(joystick);
+    add(dino);
+    joystick.position = size / 2;
 
     return super.onLoad();
   }

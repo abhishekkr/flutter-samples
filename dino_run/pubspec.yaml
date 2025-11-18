@@ -23,11 +23,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/parallax_background/plx-1.png
-    - assets/images/parallax_background/plx-2.png
-    - assets/images/parallax_background/plx-3.png
-    - assets/images/parallax_background/plx-4.png
-    - assets/images/parallax_background/plx-5.png
+    - assets/images/parallax_background/
     - assets/images/
     - assets/audios/
   # https://flutter.dev/to/resolution-aware-images

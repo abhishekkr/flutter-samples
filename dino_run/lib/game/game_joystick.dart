@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart' show EdgeInsets;
 import 'package:flame/components.dart';
 import 'package:flame/palette.dart';
@@ -15,4 +17,10 @@ class GameJoystick extends JoystickComponent {
           paint: BasicPalette.gray.withAlpha(90).paint(),
         ),
       );
+
+  @override
+  FutureOr<void> onLoad() async {
+    anchor = Anchor.center;
+    return super.onLoad();
+  }
 }

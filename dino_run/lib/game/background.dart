@@ -15,6 +15,8 @@ class LevelBackground extends ParallaxComponent<DinoRun> {
     "parallax_background/plx-2.png",
     "parallax_background/plx-3.png",
     "parallax_background/plx-4.png",
+    "parallax_background/plx-5.png",
+    "parallax_background/plx-6.png",
   ];
 
   @override
