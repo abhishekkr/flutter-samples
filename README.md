@@ -8,5 +8,8 @@
 
 * [Tile Flame Game](tiled_flame_game/README.md): following YT Flame tutorial from @TylerCodes.
 
+* [Craig's Boboo](craig_boboo/README.md): following YT Flame tutorials by @CraigOda.
+
+* [Dino Run](dino_run/README.md): following YT Flame tutorials by @DevKage.
 
 ---
