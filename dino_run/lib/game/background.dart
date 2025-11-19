@@ -7,10 +7,6 @@ import 'package:dino_run/game/mygame.dart';
 
 class LevelBackground extends ParallaxComponent<DinoRun> {
   final List<String> bgPaths = [
-    /*
-    "plx1.png",
-    "parallax_background/plx-5.png",
-    */
     "parallax_background/plx-1.png",
     "parallax_background/plx-2.png",
     "parallax_background/plx-3.png",
