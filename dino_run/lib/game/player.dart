@@ -1,16 +1,19 @@
 import 'dart:async';
 
 import 'package:df_log/_common.dart';
+import 'package:dino_run/game/enemy.dart';
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-
-import 'package:dino_run/game/mygame.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
+import 'package:dino_run/game/mygame.dart';
+
 enum PlayerState { idle, run, kick, hit, sprint }
 
-class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
+class Player extends SpriteAnimationComponent
+    with HasGameReference<DinoRun>, CollisionCallbacks {
   static const String spritePath = "DinoSprites_doux.png";
   static const double speed = 3.0;
   static const int xSpawnPercent = 15;
@@ -19,6 +22,8 @@ class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
   static const int jumpHeightPercentLow = 15;
   double jumpHeight = 150.0;
   bool jumpState = false;
+  bool hitState = false;
+
   PlayerState currentState = PlayerState.idle;
 
   Vector2 groundForPlayer = Vector2.zero();
@@ -27,6 +32,8 @@ class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
 
   @override
   FutureOr<void> onLoad() async {
+    debugMode = true;
+
     final spriteImage = await game.images.load("DinoSprites_doux.png");
     final spriteSheet = SpriteSheet(
       image: spriteImage,
@@ -46,6 +53,15 @@ class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
     size = Vector2.all(90);
     anchor = Anchor.center;
 
+    /*
+    RectangleHitbox rectHitbox = RectangleHitbox(
+      position: position,
+      size: Vector2(size.x - 10, size.y - 10),
+    );
+    add(rectHitbox);
+    */
+    add(RectangleHitbox());
+
     return super.onLoad();
   }
 
@@ -53,7 +69,9 @@ class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
   void update(double dt) {
     super.update(dt);
 
-    if (game.joystick.direction != JoystickDirection.idle) {
+    if (hitState) {
+      animateHit();
+    } else if (game.joystick.direction != JoystickDirection.idle) {
       doMovePlayer(dt);
     }
   }
@@ -78,6 +96,36 @@ class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
     Log.info("game.size: $gameSize | player.size: $size");
     Log.info("groundForPlayer: $groundForPlayer");
     position = groundForPlayer;
+  }
+
+  @override
+  void onCollision(Set<Vector2> points, PositionComponent other) {
+    if (other is ScreenHitbox) {
+      Log.ok("Player at Screen Edge.");
+    } else if (other is Enemy) {
+      Log.ok("Player hit by Enemy.");
+      enableHitState(currentState, 1);
+    }
+    super.onCollision(points, other);
+  }
+
+  void enableHitState(PlayerState prevState, double period) {
+    if (hitState) {
+      return;
+    }
+    final TimerComponent hitTimer = TimerComponent(
+      period: period,
+      autoStart: true,
+      repeat: false,
+      removeOnFinish: true,
+      onTick: () {
+        hitState = false;
+        currentState = prevState;
+        animation = animations[prevState];
+      },
+    );
+    add(hitTimer);
+    hitState = true;
   }
 
   SpriteAnimation _createSpriteAnimation(
@@ -160,8 +208,8 @@ class Player extends SpriteAnimationComponent with HasGameReference<DinoRun> {
     final effect = MoveByEffect(
       Vector2(25, -jumpHeight),
       EffectController(
-        duration: 0.5,
-        reverseDuration: 0.4,
+        duration: 0.75,
+        reverseDuration: 0.5,
         infinite: false,
         curve: Curves.easeInOutCirc,
       ),

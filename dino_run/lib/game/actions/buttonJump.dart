@@ -1,3 +1,4 @@
+import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flame/components.dart';
@@ -42,6 +43,8 @@ class ButtonJump extends SpriteButtonComponent with HasGameReference<DinoRun> {
           fontSize: btnSize.x / 2.5,
           color: Colors.red,
           fontWeight: FontWeight.bold,
+          fontFamily: 'CrayonLibre',
+          fontStyle: FontStyle.normal,
         ),
       ),
     );
@@ -57,7 +60,7 @@ class ButtonJump extends SpriteButtonComponent with HasGameReference<DinoRun> {
     } else {
       yOffset = (10 * game.size.y) / 100; // 10% from bottom
     }
-    return Vector2(game.size.x - 50, yOffset);
+    return Vector2(game.size.x - 75, yOffset);
   }
 
   @override

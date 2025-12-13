@@ -1,18 +1,26 @@
 import 'dart:async';
+import 'dart:ui';
 
+import 'package:df_log/_common.dart';
+import 'package:dino_run/game/enemy_manager.dart';
+import 'package:dino_run/game/scorer.dart';
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:flame/events.dart';
+//import 'package:flame/events.dart';
 import 'package:flame/input.dart';
-import 'package:flame/widgets.dart';
+//import 'package:flame/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/services/keyboard_key.g.dart';
-import 'package:flutter/widgets.dart';
+//import 'package:flutter/widgets.dart';
 
 import 'package:dino_run/game/actions/buttonJump.dart';
 import 'package:dino_run/game/actions/joystick.dart';
 import 'package:dino_run/game/player.dart';
+import 'package:dino_run/game/enemy.dart';
+import 'package:dino_run/game/enemy_type.dart';
 import 'package:dino_run/game/background.dart';
 
-class DinoRun extends FlameGame with KeyboardEvents {
+class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
   DinoRun();
 
   late final Player dino;
@@ -20,6 +28,11 @@ class DinoRun extends FlameGame with KeyboardEvents {
   late final GameJoystick joystick;
   late final ButtonJump btnJump;
 
+  EnemyManager enemyManagerA = EnemyManager(4.0);
+  EnemyManager enemyManagerB = EnemyManager(7.0);
+  Scorer scorer = Scorer(0, timerUpdateCounter: 3);
+
+  // Override Methods
   @override
   FutureOr<void> onLoad() async {
     dino = Player();
@@ -39,6 +52,11 @@ class DinoRun extends FlameGame with KeyboardEvents {
     add(dino);
     add(btnJump);
 
+    add(scorer);
+    add(Enemy(enemyType: EnemyType.angrypig));
+    add(enemyManagerA);
+    add(enemyManagerB);
+
     return super.onLoad();
   }
 
@@ -54,8 +72,41 @@ class DinoRun extends FlameGame with KeyboardEvents {
     return super.onKeyEvent(event, keysPressed);
   }
 
+  @override
+  void update(double dt) {
+    super.update(dt);
+  }
+
+  //Custom Methods
   void reload() {
     removeAll(children);
     onLoad();
+  }
+
+  void updateEnemyManagerA(double intervalReduction) {
+    final newInterval = enemyManagerA.interval - intervalReduction;
+    if (newInterval <= 1) {
+      Log.ok("EnemyManager spawn duration can't be lowered to ${newInterval}.");
+    }
+    enemyManagerA.removeFromParent();
+    enemyManagerA = EnemyManager(newInterval);
+    add(enemyManagerA);
+  }
+
+  void updateEnemyManagerB(double intervalReduction) {
+    final newInterval = enemyManagerB.interval - intervalReduction;
+    if (newInterval <= 1) {
+      Log.ok("EnemyManager spawn duration can't be lowered to ${newInterval}.");
+    }
+    enemyManagerB.removeFromParent();
+    enemyManagerB = EnemyManager(newInterval);
+    add(enemyManagerB);
+  }
+
+  void addEnemyManager(double interval) {
+    if (interval <= 1.0) {
+      Log.ok("EnemyManager spawn duration can't be lowered to ${interval}.");
+    }
+    add(EnemyManager(interval));
   }
 }

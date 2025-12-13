@@ -10,6 +10,10 @@
 
 * [Craig's Boboo](craig_boboo/README.md): following YT Flame tutorials by @CraigOda.
 
-* [Dino Run](dino_run/README.md): following YT Flame tutorials by @DevKage.
+* [Dino Run](dino_run/README.md): following YT Flame tutorials by @DevKage; with custom changes to suit new Flame.
+
+* [Cosmic Havoc](#): following YT Flame tutorial by @SweaterCatStudio.
+
+* [Flapppy Bird](flappy_bird/README.md)
 
 ---

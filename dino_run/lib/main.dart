@@ -2,8 +2,16 @@ import 'package:dino_run/game/mygame.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
+  debugProfileBuildsEnabled = false; //true;
+  debugProfileBuildsEnabledUserWidgets = false; //true;
+  debugProfileLayoutsEnabled = false; //true;
+  debugProfilePaintsEnabled = false; //true;
+  debugProfilePlatformChannels = false; //true;
+
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.fullScreen();
   await Flame.device.setLandscape();

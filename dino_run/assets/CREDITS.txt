@@ -3,9 +3,14 @@
 
 * [Dino Sprites](https://arks.itch.io/dino-characters) by Arks at Itch.io
 
+* Enemies from `Pixel Adventures 2` asset pack by Pixel Frog at Itch.io
 
 ## Audio
 
 * `Kalimba 2dot5` by [abionic](https://abionic.itch.io/) at Itch.io
+
+## Font
+
+* CrayonLibre_Font_1_05 by ggbot at Itch.io
 
 ---
