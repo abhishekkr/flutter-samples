@@ -11,6 +11,7 @@ enum EnemyType {
     36,
     30,
     1.0,
+    false,
   ),
   bat(
     'bat-flying-46x30.png',
@@ -23,6 +24,7 @@ enum EnemyType {
     46,
     30,
     0.6,
+    true,
   ),
   chameleon(
     'chameleon-run-84x38.png',
@@ -35,6 +37,7 @@ enum EnemyType {
     84,
     38,
     0.9,
+    false,
   ),
   rhino(
     'rhino-run-52x34.png',
@@ -47,6 +50,7 @@ enum EnemyType {
     52,
     34,
     1.2,
+    false,
   );
 
   final String runSpriteImage;
@@ -59,6 +63,7 @@ enum EnemyType {
   final double textureX;
   final double textureY;
   final double scaleFactor;
+  final bool canFly;
 
   const EnemyType(
     this.runSpriteImage,
@@ -71,5 +76,6 @@ enum EnemyType {
     this.textureX,
     this.textureY,
     this.scaleFactor,
+    this.canFly,
   );
 }

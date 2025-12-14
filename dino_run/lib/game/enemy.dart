@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
 import 'package:flame/sprite.dart';
 
 import 'package:dino_run/game/mygame.dart';
@@ -16,6 +18,7 @@ class Enemy extends SpriteAnimationComponent
   Enemy({required this.enemyType});
 
   static const int ySpawnPercent = 84;
+  static Random _random = Random();
 
   EnemyState currentState = EnemyState.run;
   Vector2 groundForPlayer = Vector2.zero();
@@ -45,8 +48,7 @@ class Enemy extends SpriteAnimationComponent
     anchor = Anchor.center;
     scale = Vector2.all(enemyType.scaleFactor);
     groundForPlayer.x = game.size.x + 100.0;
-    groundForPlayer.y = (ySpawnPercent * game.size.y) / 100;
-    position = groundForPlayer;
+    setPosition();
 
     /*
     RectangleHitbox rectHitbox = RectangleHitbox(
@@ -78,7 +80,16 @@ class Enemy extends SpriteAnimationComponent
     super.onGameResize(gameSize);
 
     // relocate enemy to a favorable x,y
-    groundForPlayer.y = (ySpawnPercent * gameSize.y) / 100;
+    setPosition();
+  }
+
+  void setPosition() {
+    groundForPlayer.y = (ySpawnPercent * game.size.y) / 100;
+    if (enemyType.canFly) {
+      final double yUpOffset = -(_random.nextDoubleBetween(0, game.size.y / 3));
+      final double yDownOffset = _random.nextDoubleBetween(0, size.y / 1.75);
+      groundForPlayer.y += _random.nextBool() ? yUpOffset : yDownOffset;
+    }
     position = groundForPlayer;
   }
 

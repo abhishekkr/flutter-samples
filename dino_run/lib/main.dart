@@ -47,7 +47,31 @@ class _MyGameWidgetState extends State<MyGameWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(game: myGame);
+    return GameWidget(
+      game: myGame,
+      overlayBuilderMap: {
+        myGame.pauseOverlayId: (BuildContext context, DinoRun game) {
+          return IconButton(
+            icon: Icon(Icons.pause, color: Colors.white, size: 30),
+            onPressed: () {
+              myGame.pauseEngine();
+              myGame.overlays.add(myGame.pauseMenuOverlayId, priority: 1);
+              myGame.overlays.remove(myGame.pauseOverlayId);
+            },
+          );
+        },
+        myGame.pauseMenuOverlayId: (BuildContext context, DinoRun game) {
+          return IconButton(
+            icon: Icon(Icons.play_arrow, color: Colors.white, size: 50),
+            onPressed: () {
+              myGame.resumeEngine();
+              myGame.overlays.add(myGame.pauseOverlayId, priority: 1);
+              myGame.overlays.remove(myGame.pauseMenuOverlayId);
+            },
+          );
+        },
+      },
+    );
   }
 
   @override
