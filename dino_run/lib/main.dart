@@ -1,4 +1,5 @@
 import 'package:dino_run/game/mygame.dart';
+import 'package:dino_run/game/overlays.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
@@ -51,24 +52,13 @@ class _MyGameWidgetState extends State<MyGameWidget> {
       game: myGame,
       overlayBuilderMap: {
         myGame.pauseOverlayId: (BuildContext context, DinoRun game) {
-          return IconButton(
-            icon: Icon(Icons.pause, color: Colors.white, size: 30),
-            onPressed: () {
-              myGame.pauseEngine();
-              myGame.overlays.add(myGame.pauseMenuOverlayId, priority: 1);
-              myGame.overlays.remove(myGame.pauseOverlayId);
-            },
-          );
+          return buildPauseOverlay(myGame);
         },
         myGame.pauseMenuOverlayId: (BuildContext context, DinoRun game) {
-          return IconButton(
-            icon: Icon(Icons.play_arrow, color: Colors.white, size: 50),
-            onPressed: () {
-              myGame.resumeEngine();
-              myGame.overlays.add(myGame.pauseOverlayId, priority: 1);
-              myGame.overlays.remove(myGame.pauseMenuOverlayId);
-            },
-          );
+          return buildPauseMenuOverlay(context, myGame);
+        },
+        myGame.healthOverlayId: (BuildContext context, DinoRun game) {
+          return buildHealthOverlay(context, myGame);
         },
       },
     );

@@ -23,8 +23,10 @@ class Player extends SpriteAnimationComponent
   double jumpHeight = 150.0;
   bool jumpState = false;
   bool hitState = false;
+  double hitStateInterval = 2;
 
   PlayerState currentState = PlayerState.idle;
+  ValueNotifier<int> healthHearts = ValueNotifier(5);
 
   Vector2 groundForPlayer = Vector2.zero();
 
@@ -104,7 +106,7 @@ class Player extends SpriteAnimationComponent
       Log.ok("Player at Screen Edge.");
     } else if (other is Enemy) {
       Log.ok("Player hit by Enemy.");
-      enableHitState(currentState, 1);
+      enableHitState(currentState, hitStateInterval);
     }
     super.onCollision(points, other);
   }
@@ -125,6 +127,7 @@ class Player extends SpriteAnimationComponent
       },
     );
     add(hitTimer);
+    healthHearts.value -= 1;
     hitState = true;
   }
 

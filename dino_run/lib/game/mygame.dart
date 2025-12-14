@@ -22,8 +22,9 @@ import 'package:dino_run/game/background.dart';
 
 class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
   DinoRun();
-  final String pauseOverlayId = 'PauseMenu';
-  final String pauseMenuOverlayId = 'SecondaryMenu';
+  final String pauseOverlayId = 'PauseBtn';
+  final String pauseMenuOverlayId = 'PausedMenu';
+  final String healthOverlayId = 'HealthHearts';
 
   late final Player dino;
   late final LevelBackground levelbg;
@@ -60,6 +61,7 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
     add(enemyManagerB);
 
     overlays.add(pauseOverlayId);
+    overlays.add(healthOverlayId);
 
     return super.onLoad();
   }
