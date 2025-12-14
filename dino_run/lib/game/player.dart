@@ -129,6 +129,9 @@ class Player extends SpriteAnimationComponent
     add(hitTimer);
     healthHearts.value -= 1;
     hitState = true;
+    if (healthHearts.value <= 0) {
+      game.overlays.add(game.gameOverMenuOverlayId);
+    }
   }
 
   SpriteAnimation _createSpriteAnimation(

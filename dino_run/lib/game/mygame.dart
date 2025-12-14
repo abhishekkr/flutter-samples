@@ -25,6 +25,7 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
   final String pauseOverlayId = 'PauseBtn';
   final String pauseMenuOverlayId = 'PausedMenu';
   final String healthOverlayId = 'HealthHearts';
+  final String gameOverMenuOverlayId = 'GameOverMenu';
 
   late final Player dino;
   late final LevelBackground levelbg;
@@ -87,6 +88,20 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
   void reload() {
     removeAll(children);
     onLoad();
+  }
+
+  void resetLevel() {
+    children.whereType<Enemy>().forEach((Enemy child) {
+      child.removeFromParent();
+    });
+    enemyManagerA.removeFromParent();
+    enemyManagerB.removeFromParent();
+    enemyManagerA = EnemyManager(4.0);
+    add(enemyManagerA);
+    enemyManagerB = EnemyManager(7.0);
+    add(enemyManagerB);
+    dino.healthHearts = ValueNotifier(5);
+    scorer.setScore(0);
   }
 
   void updateEnemyManagerA(double intervalReduction) {

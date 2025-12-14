@@ -55,4 +55,9 @@ class Scorer extends TextComponent with HasGameReference<DinoRun> {
   int getScore() {
     return score;
   }
+
+  void setScore(int val) {
+    score = val;
+    text = val.toString();
+  }
 }

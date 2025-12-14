@@ -60,6 +60,9 @@ class _MyGameWidgetState extends State<MyGameWidget> {
         myGame.healthOverlayId: (BuildContext context, DinoRun game) {
           return buildHealthOverlay(context, myGame);
         },
+        myGame.gameOverMenuOverlayId: (BuildContext context, DinoRun game) {
+          return buildGameOverMenuOverlay(context, myGame);
+        },
       },
     );
   }
