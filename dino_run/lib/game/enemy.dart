@@ -23,6 +23,8 @@ class Enemy extends SpriteAnimationComponent
   EnemyState currentState = EnemyState.run;
   Vector2 groundForPlayer = Vector2.zero();
 
+  RectangleHitbox enemyHitbox = RectangleHitbox(anchor: Anchor.topLeft);
+
   late final Map<EnemyState, SpriteAnimation> animations;
 
   @override
@@ -50,14 +52,15 @@ class Enemy extends SpriteAnimationComponent
     groundForPlayer.x = game.size.x + 100.0;
     setPosition();
 
-    /*
-    RectangleHitbox rectHitbox = RectangleHitbox(
-      position: position,
-      size: Vector2(size.x - 10, size.y - 10),
+    enemyHitbox.position = Vector2(enemyType.hitboxX, enemyType.hitboxY);
+    enemyHitbox.size = Vector2(
+      size.x - enemyType.hitboxWidthDiff,
+      size.y - enemyType.hitboxHeightDiff,
     );
-    add(rectHitbox);
-    */
+    add(enemyHitbox);
+    /*
     add(RectangleHitbox());
+    */
 
     return super.onLoad();
   }

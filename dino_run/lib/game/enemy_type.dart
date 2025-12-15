@@ -11,6 +11,10 @@ enum EnemyType {
     36,
     30,
     1.0,
+    5,
+    2,
+    15,
+    15,
     false,
   ),
   bat(
@@ -24,6 +28,10 @@ enum EnemyType {
     46,
     30,
     0.6,
+    0,
+    5,
+    0,
+    10,
     true,
   ),
   chameleon(
@@ -37,6 +45,10 @@ enum EnemyType {
     84,
     38,
     0.9,
+    5,
+    90,
+    100,
+    15,
     false,
   ),
   rhino(
@@ -50,6 +62,10 @@ enum EnemyType {
     52,
     34,
     1.2,
+    0,
+    15,
+    5,
+    25,
     false,
   );
 
@@ -63,6 +79,10 @@ enum EnemyType {
   final double textureX;
   final double textureY;
   final double scaleFactor;
+  final double hitboxX;
+  final double hitboxY;
+  final double hitboxWidthDiff;
+  final double hitboxHeightDiff;
   final bool canFly;
 
   const EnemyType(
@@ -76,6 +96,10 @@ enum EnemyType {
     this.textureX,
     this.textureY,
     this.scaleFactor,
+    this.hitboxX,
+    this.hitboxY,
+    this.hitboxWidthDiff,
+    this.hitboxHeightDiff,
     this.canFly,
   );
 }

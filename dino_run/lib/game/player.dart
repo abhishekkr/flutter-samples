@@ -22,6 +22,14 @@ class Player extends SpriteAnimationComponent
   static const int jumpHeightPercentLow = 15;
   double jumpHeight = 150.0;
   bool jumpState = false;
+
+  RectangleHitbox dinoHitbox = RectangleHitbox(
+    anchor: Anchor.topLeft,
+    position: Vector2(15, 15),
+  );
+  double dinoHitboxHeightDiff = 30;
+  double dinoHitboxRunWidthDiff = 30;
+  double dinoHitboxSprintWidthDiff = 15;
   bool hitState = false;
   double hitStateInterval = 2;
 
@@ -55,14 +63,11 @@ class Player extends SpriteAnimationComponent
     size = Vector2.all(90);
     anchor = Anchor.center;
 
-    /*
-    RectangleHitbox rectHitbox = RectangleHitbox(
-      position: position,
-      size: Vector2(size.x - 10, size.y - 10),
+    dinoHitbox.size = Vector2(
+      size.x - dinoHitboxRunWidthDiff,
+      size.y - dinoHitboxHeightDiff,
     );
-    add(rectHitbox);
-    */
-    add(RectangleHitbox());
+    add(dinoHitbox);
 
     return super.onLoad();
   }
@@ -165,16 +170,28 @@ class Player extends SpriteAnimationComponent
   }
 
   void animateIdle() {
+    dinoHitbox.size = Vector2(
+      size.x - dinoHitboxRunWidthDiff,
+      size.y - dinoHitboxHeightDiff,
+    );
     currentState = PlayerState.idle;
     animation = animations[PlayerState.idle];
   }
 
   void animateRun() {
+    dinoHitbox.size = Vector2(
+      size.x - dinoHitboxRunWidthDiff,
+      size.y - dinoHitboxHeightDiff,
+    );
     currentState = PlayerState.run;
     animation = animations[PlayerState.run];
   }
 
   void animateKick() {
+    dinoHitbox.size = Vector2(
+      size.x - dinoHitboxRunWidthDiff,
+      size.y - dinoHitboxHeightDiff,
+    );
     currentState = PlayerState.kick;
     animation = animations[PlayerState.kick];
   }
@@ -185,6 +202,10 @@ class Player extends SpriteAnimationComponent
   }
 
   void animateSprint() {
+    dinoHitbox.size = Vector2(
+      size.x - dinoHitboxSprintWidthDiff,
+      size.y - dinoHitboxHeightDiff,
+    );
     currentState = PlayerState.sprint;
     animation = animations[PlayerState.sprint];
   }
