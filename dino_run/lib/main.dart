@@ -1,4 +1,4 @@
-import 'package:dino_run/main_menu.dart';
+import 'package:dino_run/home_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/rendering.dart';
@@ -17,18 +17,9 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dino Run',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const MainMenu(),
-    );
-  }
+  State<MyApp> createState() => HomeMenu();
 }

@@ -28,7 +28,11 @@ Widget buildPauseMenuOverlay(BuildContext context, DinoRun myGame) {
           children: [
             Text(
               'PAUSED',
-              style: TextStyle(fontSize: 75.0, color: Colors.yellowAccent),
+              style: TextStyle(
+                fontSize: 75.0,
+                color: Colors.yellowAccent,
+                fontFamily: 'CrayonLibre',
+              ),
             ),
             IconButton(
               icon: Icon(Icons.play_arrow, color: Colors.white, size: 50),
@@ -85,11 +89,19 @@ Widget buildGameOverMenuOverlay(BuildContext context, DinoRun myGame) {
           children: [
             Text(
               'GAME OVER',
-              style: TextStyle(fontSize: 75.0, color: Colors.yellowAccent),
+              style: TextStyle(
+                fontSize: 75.0,
+                color: Colors.yellowAccent,
+                fontFamily: 'CrayonLibre',
+              ),
             ),
             Text(
               'You Scored: ${myGame.scorer.score.toString()}',
-              style: TextStyle(fontSize: 75.0, color: Colors.yellowAccent),
+              style: TextStyle(
+                fontSize: 55.0,
+                color: Colors.yellowAccent,
+                fontFamily: 'CrayonLibre',
+              ),
             ),
             IconButton(
               icon: Icon(Icons.replay, color: Colors.white, size: 50),
