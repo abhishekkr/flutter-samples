@@ -1,3 +1,4 @@
+import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/main.dart';
 import 'package:dino_run/settings_menu.dart';
 import 'package:dino_run/main_menu.dart';
@@ -63,10 +64,12 @@ class HomeMenu extends State<MyApp> {
   }
 
   void showMainMenu() {
+    AudioManager.instance.sfxPlay('event');
     _crossFadeStateNotifier.value = CrossFadeState.showFirst;
   }
 
   void showSettingsMenu() {
+    AudioManager.instance.sfxPlay('event');
     _crossFadeStateNotifier.value = CrossFadeState.showSecond;
   }
 }

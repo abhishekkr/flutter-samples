@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:df_log/_common.dart';
+import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/enemy_manager.dart';
 import 'package:dino_run/game/scorer.dart';
 import 'package:flame/components.dart';
@@ -64,6 +65,8 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
     overlays.add(pauseOverlayId);
     overlays.add(healthOverlayId);
 
+    AudioManager.instance.bgmStart();
+
     return super.onLoad();
   }
 
@@ -82,6 +85,12 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
   @override
   void update(double dt) {
     super.update(dt);
+  }
+
+  @override
+  void onDetach() {
+    AudioManager.instance.bgmStop();
+    super.onDetach();
   }
 
   //Custom Methods

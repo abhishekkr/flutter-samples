@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:df_log/_common.dart';
+import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/enemy.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -120,6 +121,7 @@ class Player extends SpriteAnimationComponent
     if (hitState) {
       return;
     }
+    AudioManager.instance.sfxPlay('playerHurt');
     final TimerComponent hitTimer = TimerComponent(
       period: period,
       autoStart: true,
@@ -225,6 +227,7 @@ class Player extends SpriteAnimationComponent
   }
 
   void doJump() {
+    AudioManager.instance.sfxPlay('playerJump');
     if (jumpState) {
       return;
     }

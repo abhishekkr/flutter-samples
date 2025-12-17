@@ -14,6 +14,8 @@ dependencies:
   df_log: ^0.3.28
   flame: ^1.33.0
   flame_audio: ^2.11.11
+  hive_ce: ^2.15.1
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
@@ -26,12 +28,13 @@ flutter:
     - assets/images/gui/
     - assets/images/parallax_background/
     - assets/images/
-    - assets/audios/
+    - assets/audio/
   fonts:
     - family: CrayonLibre
       fonts:
         - asset: assets/CrayonLibre-Regular.ttf
-  # https://flutter.dev/to/resolution-aware-images
-  # https://flutter.dev/to/asset-from-package
-  # see https://flutter.dev/to/font-from-package
-  #
+# OYE
+# * FlameAudio defaults to look at /assets/audio and it's FAWLTY to pick elsewhere
+# https://flutter.dev/to/resolution-aware-images
+# https://flutter.dev/to/asset-from-package
+# see https://flutter.dev/to/font-from-package

@@ -1,3 +1,4 @@
+import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/mygame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,9 +7,11 @@ Widget buildPauseOverlay(DinoRun myGame) {
   return IconButton(
     icon: Icon(Icons.pause, color: Colors.white, size: 30),
     onPressed: () {
+      AudioManager.instance.bgmPause();
       myGame.pauseEngine();
       myGame.overlays.add(myGame.pauseMenuOverlayId, priority: 1);
       myGame.overlays.remove(myGame.pauseOverlayId);
+      AudioManager.instance.sfxPlay('event');
     },
   );
 }
@@ -37,6 +40,8 @@ Widget buildPauseMenuOverlay(BuildContext context, DinoRun myGame) {
             IconButton(
               icon: Icon(Icons.play_arrow, color: Colors.white, size: 50),
               onPressed: () {
+                AudioManager.instance.sfxPlay('event');
+                AudioManager.instance.bgmResume();
                 myGame.resumeEngine();
                 myGame.overlays.add(myGame.pauseOverlayId, priority: 1);
                 myGame.overlays.remove(myGame.pauseMenuOverlayId);
@@ -74,7 +79,9 @@ Widget buildHealthOverlay(BuildContext context, DinoRun myGame) {
 }
 
 Widget buildGameOverMenuOverlay(BuildContext context, DinoRun myGame) {
+  AudioManager.instance.bgmPause();
   myGame.pauseEngine();
+  AudioManager.instance.sfxPlay('event');
   return Center(
     child: Card(
       shape: RoundedRectangleBorder(
@@ -106,9 +113,11 @@ Widget buildGameOverMenuOverlay(BuildContext context, DinoRun myGame) {
             IconButton(
               icon: Icon(Icons.replay, color: Colors.white, size: 50),
               onPressed: () {
+                AudioManager.instance.sfxPlay('event');
                 myGame.resetLevel();
                 myGame.resumeEngine();
                 myGame.overlays.remove(myGame.gameOverMenuOverlayId);
+                AudioManager.instance.bgmResume();
               },
             ),
           ],

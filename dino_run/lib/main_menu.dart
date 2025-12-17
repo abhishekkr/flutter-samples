@@ -1,3 +1,4 @@
+import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/my_game_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,13 @@ class MainMenu extends StatelessWidget {
         backgroundColor: Colors.greenAccent,
         padding: EdgeInsets.symmetric(horizontal: 95, vertical: btnVerticalPad),
       ),
+      onHover: (isHovering) {
+        if (isHovering) {
+          AudioManager.instance.sfxPlay('event');
+        }
+      },
       onPressed: () {
+        AudioManager.instance.sfxPlay('event');
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => MyGameWidget(title: 'DINO RUN'),
@@ -62,7 +69,13 @@ class MainMenu extends StatelessWidget {
         backgroundColor: Colors.greenAccent,
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: btnVerticalPad),
       ),
+      onHover: (isHovering) {
+        if (isHovering) {
+          AudioManager.instance.sfxPlay('event');
+        }
+      },
       onPressed: () {
+        AudioManager.instance.sfxPlay('event');
         callOnSettingsPressed();
       },
       child: Text(
