@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:df_log/_common.dart';
 import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/enemy.dart';
+import 'package:dino_run/game/game_data.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
@@ -137,6 +138,7 @@ class Player extends SpriteAnimationComponent
     healthHearts.value -= 1;
     hitState = true;
     if (healthHearts.value <= 0) {
+      game.gameStatus = GameStatus.gameOver;
       game.overlays.add(game.gameOverMenuOverlayId);
     }
   }
@@ -221,12 +223,18 @@ class Player extends SpriteAnimationComponent
   }
 
   void handleJoystickDragStop() {
+    if (!game.isPlaying()) {
+      return;
+    }
     if (currentState == PlayerState.sprint) {
       animateRun();
     }
   }
 
   void doJump() {
+    if (!game.isPlaying()) {
+      return;
+    }
     AudioManager.instance.sfxPlay('playerJump');
     if (jumpState) {
       return;

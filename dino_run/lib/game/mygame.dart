@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:df_log/_common.dart';
 import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/enemy_manager.dart';
+import 'package:dino_run/game/game_data.dart';
 import 'package:dino_run/game/scorer.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
@@ -37,6 +38,8 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
   EnemyManager enemyManagerB = EnemyManager(7.0);
   Scorer scorer = Scorer(0, timerUpdateCounter: 3);
 
+  late GameStatus gameStatus;
+
   // Override Methods
   @override
   FutureOr<void> onLoad() async {
@@ -66,6 +69,7 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
     overlays.add(healthOverlayId);
 
     AudioManager.instance.bgmStart();
+    gameStatus = GameStatus.playing;
 
     return super.onLoad();
   }
@@ -139,4 +143,8 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
     }
     add(EnemyManager(interval));
   }
+
+  bool isPlaying() => gameStatus == GameStatus.playing;
+  bool isPaused() => gameStatus == GameStatus.paused;
+  bool isOver() => gameStatus == GameStatus.gameOver;
 }

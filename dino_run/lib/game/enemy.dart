@@ -82,18 +82,23 @@ class Enemy extends SpriteAnimationComponent
   void onGameResize(Vector2 gameSize) {
     super.onGameResize(gameSize);
 
-    // relocate enemy to a favorable x,y
-    setPosition();
+    // relocate enemy to a favorable y
+    setPositionY();
   }
 
-  void setPosition() {
+  void setPositionY() {
     groundForPlayer.y = (ySpawnPercent * game.size.y) / 100;
     if (enemyType.canFly) {
       final double yUpOffset = -(_random.nextDoubleBetween(0, game.size.y / 3));
       final double yDownOffset = _random.nextDoubleBetween(0, size.y / 1.75);
       groundForPlayer.y += _random.nextBool() ? yUpOffset : yDownOffset;
     }
-    position = groundForPlayer;
+    position.y = groundForPlayer.y;
+  }
+
+  void setPosition() {
+    setPositionY();
+    position.x = groundForPlayer.x;
   }
 
   Future<SpriteAnimation> _createSpriteAnimation(

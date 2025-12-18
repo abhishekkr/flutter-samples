@@ -1,4 +1,5 @@
 import 'package:dino_run/game/audio_manager.dart';
+import 'package:dino_run/game/game_data.dart';
 import 'package:dino_run/game/mygame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +8,10 @@ Widget buildPauseOverlay(DinoRun myGame) {
   return IconButton(
     icon: Icon(Icons.pause, color: Colors.white, size: 30),
     onPressed: () {
+      if (!myGame.isPlaying()) {
+        return;
+      }
+      myGame.gameStatus = GameStatus.paused;
       AudioManager.instance.bgmPause();
       myGame.pauseEngine();
       myGame.overlays.add(myGame.pauseMenuOverlayId, priority: 1);
@@ -40,6 +45,10 @@ Widget buildPauseMenuOverlay(BuildContext context, DinoRun myGame) {
             IconButton(
               icon: Icon(Icons.play_arrow, color: Colors.white, size: 50),
               onPressed: () {
+                if (!myGame.isPaused()) {
+                  return;
+                }
+                myGame.gameStatus = GameStatus.playing;
                 AudioManager.instance.sfxPlay('event');
                 AudioManager.instance.bgmResume();
                 myGame.resumeEngine();
@@ -113,6 +122,10 @@ Widget buildGameOverMenuOverlay(BuildContext context, DinoRun myGame) {
             IconButton(
               icon: Icon(Icons.replay, color: Colors.white, size: 50),
               onPressed: () {
+                if (!myGame.isOver()) {
+                  return;
+                }
+                myGame.gameStatus = GameStatus.playing;
                 AudioManager.instance.sfxPlay('event');
                 myGame.resetLevel();
                 myGame.resumeEngine();
