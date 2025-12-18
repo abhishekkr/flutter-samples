@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:math' as dartMath;
+import 'dart:math' as dart_math;
 
 import 'package:dino_run/game/mygame.dart';
 import 'package:flame/components.dart';
@@ -11,12 +11,12 @@ class EnemyManager extends Component with HasGameReference<DinoRun> {
   final double interval;
   EnemyManager(this.interval);
 
-  late final dartMath.Random _random;
+  late final dart_math.Random _random;
 
   @override
   FutureOr<void> onLoad() {
     // TODO: implement onLoad
-    _random = dartMath.Random();
+    _random = dart_math.Random();
     //_timer = flameTimer.Timer(2, onTick: spawnEnemy, repeat: true);
     add(TimerComponent(period: interval, repeat: true, onTick: spawnEnemy));
     return super.onLoad();

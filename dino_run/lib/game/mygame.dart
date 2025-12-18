@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:df_log/_common.dart';
 import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/enemy_manager.dart';
 import 'package:dino_run/game/game_data.dart';
 import 'package:dino_run/game/scorer.dart';
-import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 //import 'package:flame/events.dart';
 import 'package:flame/input.dart';
@@ -84,11 +82,6 @@ class DinoRun extends FlameGame with KeyboardEvents, HasCollisionDetection {
       dino.doJump();
     }
     return super.onKeyEvent(event, keysPressed);
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
   }
 
   @override

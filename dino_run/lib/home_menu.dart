@@ -25,7 +25,6 @@ class HomeMenu extends State<MyApp> {
     );
   }
 
-  @override
   Widget _buildMenu(BuildContext context) {
     final Widget menuPanel = Container(
       width: MediaQuery.of(context).size.width,
@@ -41,7 +40,7 @@ class HomeMenu extends State<MyApp> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
-          color: Colors.greenAccent.withOpacity(0.3),
+          color: Colors.greenAccent.withValues(alpha: 0.3),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(50.0, 5.0, 50.0, 25.0),
             child: ValueListenableBuilder(

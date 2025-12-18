@@ -19,14 +19,13 @@ class LevelBackground extends ParallaxComponent<DinoRun> {
   FutureOr<void> onLoad() async {
     List<ParallaxImageData> parallaxImagesData = [];
     for (String bgPath in bgPaths) {
-      parallaxImagesData.add(await ParallaxImageData(bgPath));
+      parallaxImagesData.add(ParallaxImageData(bgPath));
     }
     parallax = await game.loadParallax(
       parallaxImagesData,
       baseVelocity: Vector2(50, 0),
       velocityMultiplierDelta: Vector2(1.2, 0),
     );
-    ;
 
     return super.onLoad();
   }

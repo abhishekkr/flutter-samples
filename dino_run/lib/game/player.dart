@@ -86,36 +86,36 @@ class Player extends SpriteAnimationComponent
   }
 
   @override
-  void onGameResize(Vector2 gameSize) {
-    super.onGameResize(gameSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
 
     double newJumpHeight;
     if (game.size.y > 400) {
-      newJumpHeight = (jumpHeightPercent * gameSize.x) / 100;
+      newJumpHeight = (jumpHeightPercent * size.x) / 100;
     } else {
-      newJumpHeight = (jumpHeightPercentLow * gameSize.x) / 100;
+      newJumpHeight = (jumpHeightPercentLow * size.x) / 100;
     }
     if (newJumpHeight > jumpHeight) {
       jumpHeight = newJumpHeight;
     }
 
     // relocate player to a favorable x,y
-    groundForPlayer.x = (xSpawnPercent * gameSize.x) / 100;
-    groundForPlayer.y = (ySpawnPercent * gameSize.y) / 100;
-    Log.info("game.size: $gameSize | player.size: $size");
+    groundForPlayer.x = (xSpawnPercent * size.x) / 100;
+    groundForPlayer.y = (ySpawnPercent * size.y) / 100;
+    Log.info("game.size: $size | player.size: $size");
     Log.info("groundForPlayer: $groundForPlayer");
     position = groundForPlayer;
   }
 
   @override
-  void onCollision(Set<Vector2> points, PositionComponent other) {
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is ScreenHitbox) {
       Log.ok("Player at Screen Edge.");
     } else if (other is Enemy) {
       Log.ok("Player hit by Enemy.");
       enableHitState(currentState, hitStateInterval);
     }
-    super.onCollision(points, other);
+    super.onCollision(intersectionPoints, other);
   }
 
   void enableHitState(PlayerState prevState, double period) {

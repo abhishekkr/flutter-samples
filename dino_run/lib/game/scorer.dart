@@ -27,8 +27,8 @@ class Scorer extends TextComponent with HasGameReference<DinoRun> {
   }
 
   @override
-  void onGameResize(Vector2 gameSize) {
-    super.onGameResize(gameSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
 
     // relocate enemy to a favorable x,y
     position = Vector2(game.size.x / 2, 50);

@@ -18,7 +18,7 @@ class Enemy extends SpriteAnimationComponent
   Enemy({required this.enemyType});
 
   static const int ySpawnPercent = 84;
-  static Random _random = Random();
+  final Random _random = Random();
 
   EnemyState currentState = EnemyState.run;
   Vector2 groundForPlayer = Vector2.zero();
@@ -58,9 +58,6 @@ class Enemy extends SpriteAnimationComponent
       size.y - enemyType.hitboxHeightDiff,
     );
     add(enemyHitbox);
-    /*
-    add(RectangleHitbox());
-    */
 
     return super.onLoad();
   }
@@ -79,8 +76,8 @@ class Enemy extends SpriteAnimationComponent
   }
 
   @override
-  void onGameResize(Vector2 gameSize) {
-    super.onGameResize(gameSize);
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
 
     // relocate enemy to a favorable y
     setPositionY();

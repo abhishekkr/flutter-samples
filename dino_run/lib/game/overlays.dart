@@ -2,7 +2,6 @@ import 'package:dino_run/game/audio_manager.dart';
 import 'package:dino_run/game/game_data.dart';
 import 'package:dino_run/game/mygame.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 Widget buildPauseOverlay(DinoRun myGame) {
   return IconButton(
@@ -27,7 +26,7 @@ Widget buildPauseMenuOverlay(BuildContext context, DinoRun myGame) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(15.0),
       ),
-      color: Colors.black.withOpacity(0.25),
+      color: Colors.black.withValues(alpha: 0.25),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 50.0),
         child: Column(
@@ -96,7 +95,7 @@ Widget buildGameOverMenuOverlay(BuildContext context, DinoRun myGame) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(15.0),
       ),
-      color: Colors.black.withOpacity(0.5),
+      color: Colors.black.withValues(alpha: 0.5),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 50.0),
         child: Column(
