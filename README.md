@@ -6,11 +6,13 @@
 
 * [Fluttr-ing](./example_fluttr_ing/README.md): with Codelabs' examples and few extra widget uses.
 
-* [Tile Flame Game](tiled_flame_game/README.md): following YT Flame tutorial from @TylerCodes.
-
 * [Craig's Boboo](craig_boboo/README.md): following YT Flame tutorials by @CraigOda.
 
 * [Dino Run](dino_run/README.md): following YT Flame tutorials by @DevKage; with custom changes to suit new Flame.
+
+---
+
+* [Tile Flame Game](tiled_flame_game/README.md): following YT Flame tutorial from @TylerCodes.
 
 * [Cosmic Havoc](#): following YT Flame tutorial by @SweaterCatStudio.
 

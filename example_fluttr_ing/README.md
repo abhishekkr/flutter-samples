@@ -1,4 +1,8 @@
-# sample_project_flutter
+# Fluttr-ing
+
+> Sample Project Flutter, testing random code and widgets.
+>
+> Versions: Flutter v3.35.7
 
 Here we'll work on a sample flutter project `fluttr`.
 
