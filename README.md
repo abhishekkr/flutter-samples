@@ -10,6 +10,8 @@
 
 * [Dino Run](dino_run/README.md): following YT Flame tutorials by @DevKage; with custom changes to suit new Flame.
 
+* [Forge2D Example](forge2d_eg/README.md) following [2024 Conf Talk by Brett Morgan](https://www.youtube.com/watch?v=nsnQJrYHHNQ)
+
 ---
 
 * [Tile Flame Game](tiled_flame_game/README.md): following YT Flame tutorial from @TylerCodes.
